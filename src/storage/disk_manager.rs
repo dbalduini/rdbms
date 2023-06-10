@@ -1,8 +1,8 @@
+use super::page::PAGE_SIZE;
 use std::fs::{remove_file, File};
 use std::io::{Result, Write};
 use std::os::windows::prelude::FileExt;
 use std::path::Path;
-use super::page::PAGE_SIZE;
 
 pub struct DiskManager {
     db_file: String,

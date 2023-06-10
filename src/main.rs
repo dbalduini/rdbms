@@ -3,8 +3,4 @@ use crate::storage::*;
 
 mod storage;
 
-fn main() {
-
-    
-}
-
+fn main() {}
