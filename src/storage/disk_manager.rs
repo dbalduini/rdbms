@@ -2,8 +2,7 @@ use std::fs::{remove_file, File};
 use std::io::{Result, Write};
 use std::os::windows::prelude::FileExt;
 use std::path::Path;
-
-pub const PAGE_SIZE: usize = 4096;
+use super::page::PAGE_SIZE;
 
 pub struct DiskManager {
     db_file: String,
@@ -65,8 +64,8 @@ mod tests {
         let mut dm = DiskManager::new(String::from(DB));
         let mut data = [0; PAGE_SIZE];
         let mut buf = [0; PAGE_SIZE];
-        let n = "Hello World".as_bytes();
 
+        let n = "Hello World".as_bytes();
         data[..n.len()].clone_from_slice(&n);
 
         // tolerate empty read
