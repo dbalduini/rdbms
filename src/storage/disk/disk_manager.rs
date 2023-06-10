@@ -1,5 +1,5 @@
-use std::fs::{remove_file, File, OpenOptions};
-use std::io::{Error, Result, Seek, SeekFrom, Write};
+use std::fs::{remove_file, File};
+use std::io::{Result, Write};
 use std::os::windows::prelude::FileExt;
 use std::path::Path;
 
