@@ -22,14 +22,14 @@ impl BufferPoolManager {
         let mut pages: Vec<Page> = Vec::with_capacity(pool_size);
         let mut free_list: Vec<FrameId> = Vec::with_capacity(pool_size);
 
-        // all pages start in the free list
-        for i in 0..pool_size {
-            free_list.push(i.try_into().unwrap());
-        }
-
         // alocate empty pages
         for _ in 0..pool_size {
             pages.push(Page::new());
+        }
+
+        // all pages start in the free list
+        for i in 0..pool_size {
+            free_list.push(i.try_into().unwrap());
         }
 
         BufferPoolManager {
@@ -38,12 +38,12 @@ impl BufferPoolManager {
             page_table: HashMap::new(),
             disk_manager,
             free_list,
-            next_page_id: -1,
+            next_page_id: 0,
         }
     }
 
     pub fn new_page(&mut self) -> Result<&mut Page, String> {
-        let next_page_id = self.next_page_id + 1;
+        let next_page_id = self.next_page_id;
 
         if let Some(frame_id) = self.free_list.pop() {
             self.next_page_id += 1;

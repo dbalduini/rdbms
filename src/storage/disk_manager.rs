@@ -20,9 +20,7 @@ impl DiskManager {
             Err(e) => panic!("Failed to open database {} {:?}", db_file, e),
         };
 
-        let dm = DiskManager { db_file, db_io };
-
-        dm
+        DiskManager { db_file, db_io }
     }
 
     pub fn write_page(&mut self, page_id: u64, page: &[u8]) -> Result<usize> {
